@@ -16,4 +16,5 @@ public class OrderEventProducer {
     public void sendOrderEvent(Order order) {
         kafkaTemplate.send("order-events", order);
     }
+    
 }
