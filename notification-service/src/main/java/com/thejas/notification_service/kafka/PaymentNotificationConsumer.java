@@ -1,23 +1,23 @@
 package com.thejas.notification_service.kafka;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Service;
 
 import com.thejas.notification_service.model.Payment;
 
-@Component
+@Service
 public class PaymentNotificationConsumer {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(PaymentNotificationConsumer.class);
 
-    @KafkaListener(topics = "${kafka.topic.payment-events:payment-events}", 
-                  groupId = "${kafka.group.id:notification-service-group}",
-                  containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "${spring.kafka.topic.payment-notifications}", 
+                  groupId = "${spring.kafka.consumer.group-id}")
     public void handlePaymentNotification(
             @Payload Payment payment,
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
