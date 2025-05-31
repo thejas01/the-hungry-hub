@@ -29,4 +29,10 @@ public class OrderController {
     public ResponseEntity<List<Order>> getUserOrders(@PathVariable Long userId) {
         return ResponseEntity.ok(service.getOrdersByUser(userId));
     }
+
+    @PostMapping("/place/{restaurantId}")
+    public ResponseEntity<String> placeOrder(@PathVariable Long restaurantId) {
+        service.placeOrder(restaurantId);
+        return ResponseEntity.ok("Order placed successfully");
+    }
 }
