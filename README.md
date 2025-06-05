@@ -67,14 +67,47 @@ cd delivery-service
 cd api-gateway
 ./mvnw spring-boot:run
 
-API Documentation
-User Service: http://localhost:8081/swagger-ui.html
-Order Service: http://localhost:8082/swagger-ui.html
-Payment Service: http://localhost:8083/swagger-ui.html
-Notification Service: http://localhost:8084/swagger-ui.html
-Restaurant Service: http://localhost:8087/swagger-ui.html
-Delivery Service: http://localhost:8088/swagger-ui.html
-API Gateway: http://localhost:8080
+## API Documentation
+
+### Service URLs
+- User Service: http://localhost:8081
+- Order Service: http://localhost:8082
+- Payment Service: http://localhost:8083
+- Notification Service: http://localhost:8084
+- Restaurant Service: http://localhost:8087
+- Delivery Service: http://localhost:8088
+- API Gateway: http://localhost:8080
+
+### API Endpoints
+
+#### API Gateway Service
+- **GET** `/gateway/health` - Health check endpoint for the API Gateway
+
+#### User Service
+- **POST** `/users` - Register a new user
+- **GET** `/users/{id}` - Get user details by ID
+
+#### Restaurant Service
+- **POST** `/restaurants` - Add a new restaurant
+- **GET** `/restaurants` - Get all restaurants
+- **GET** `/restaurants/{id}` - Get restaurant details by ID
+- **POST** `/restaurants/{restaurantId}/menu` - Add menu item to restaurant
+- **GET** `/restaurants/{restaurantId}/menu` - Get menu items for restaurant
+
+#### Order Service
+- **POST** `/orders` - Place a new order
+- **GET** `/orders/user/{userId}` - Get all orders for a user
+- **POST** `/orders/place/{restaurantId}` - Place order for specific restaurant
+
+#### Payment Service
+- **POST** `/payments` - Process a payment
+
+#### Delivery Service
+- **GET** `/deliveries/user/{userId}` - Get all deliveries for a user
+- **PUT** `/deliveries/{id}/status?status={status}` - Update delivery status
+
+#### Notification Service
+- No REST endpoints (Event-driven service using Kafka)
 
 Kafka Topics
 payment-events: Used for payment and notification communication
