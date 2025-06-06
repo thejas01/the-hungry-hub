@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/restaurants/{restaurantId}/menu")
+@CrossOrigin("*")
 public class MenuItemController {
 
     private final MenuItemService itemService;
